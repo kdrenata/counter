@@ -1,16 +1,12 @@
 .app {
     padding: 30px;
     display: flex;
-    color: #23251b;
 }
 
-.app > div {
-    margin-right: 5px;
-    margin-left: 5px;
-}
 #root {
-    height: 100%;
+    min-height: 100%;
     margin: 100px auto;
+    background-color: #c6c9ca;
     border: 3px solid #234970;
     box-shadow: 0 4px 10px 0 #5e6565;
     padding: 30px;
