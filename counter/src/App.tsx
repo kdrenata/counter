@@ -1,32 +1,32 @@
 import {useState} from 'react'
 import './App.css'
-import {Counter} from "./Counter.tsx";
-import {Button} from "./Button.tsx";
+import {Counter} from "./components/Counter.tsx";
+import {SettingsBox} from "./components/SettingsBox.tsx";
+
+
 
 function App() {
 
-    const minValue = 0
-    const maxValue = 5
-    const [count, setCount] = useState(minValue)
-
-    const incCount = () => {
-        if (count < maxValue) {
-            setCount(count + 1)
-        }
+    const initialValues = {
+        startValue: 0,
+        maxValue: 5,
     }
-    const resetCount = () => {
-        setCount(0)
+    const [value, setValue] = useState(initialValues);
+
+    const setValuesHandler = (newStartValue: number, newMaxValue: number) => {
+        setValue( {startValue: newStartValue, maxValue: newMaxValue } );
     }
-
-    const countStyle = count >= maxValue ? "red" : "black"
-
 
     return (
-        <div className="container">
-            <Counter count={count} color={countStyle}/>
-            <div className='wrapper-button'>
-                <Button title={'inc'} onClick={incCount} disabled={count === maxValue}/>
-                <Button title={'reset'} onClick={resetCount} disabled={count === minValue}/>
+        <div className="App">
+            <div className="settings-container">
+                <SettingsBox
+                    startValue={value.startValue}
+                    maxValue={value.maxValue}
+                    onSetValues={setValuesHandler}/>
+            </div>
+            <div className="counter-container">
+                <Counter startValue={value.startValue} maxValue={value.maxValue}/>
             </div>
         </div>
     );
